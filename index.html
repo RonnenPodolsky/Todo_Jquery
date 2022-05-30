@@ -4,10 +4,85 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./index.css">
-    <title>Quiz</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css">
+    
+    <title>NBA Quiz</title>
 </head>
 <body>
-    <script src="index.js"></script>
+
+  <!-- top section -->
+  <div class="intro py-3 bg-white text-center">
+    <div class="container">
+      <h2 class="text-primary display-4 my-1">NBA Quiz</h2>
+    </div>
+  </div>
+
+
+  <!-- result section -->
+  <div class="result py-3 d-none bg-light text-center">
+    <div class="container lead">
+      <p>You are a <span class="text-primary display-4 p-3">0%</span> NBA fan</p>
+    </div>
+  </div>
+
+  <!-- quiz section -->
+  <div class="quiz py-2 bg-primary">
+    <div class="container">
+      <h2 class="my-2 text-white">Questions:</h2>
+
+      <form class="quiz-form text-light">
+        <div class="my-1">
+          <p class="lead font-weight-normal">1. Who is better?</p>
+          <div class="form-check my-2 text-white-50">
+            <input type="radio" name="q1" id="Doncic" value="A" checked>
+            <label for="Doncic" class="form-check-label">Doncic</label>
+          </div>
+          <div class="form-check my-2 text-white-50">
+            <input type="radio" name="q1" id ="Jimmy" value="B">
+            <label for = "Jimmy" class="form-check-label">Jimmy</label>
+          </div>
+        </div>
+        <div class="my-1">
+          <p class="lead font-weight-normal">2. Duncan is the best ever?</p>
+          <div class="form-check my-2 text-white-50">
+            <input type="radio" name="q2" value="A" checked>
+            <label class="form-check-label">yes</label>
+          </div>
+          <div class="form-check my-2 text-white-50">
+            <input type="radio" name="q2" value="B">
+            <label class="form-check-label">Tatum is better</label>
+          </div>
+        </div>
+        <div class="my-1">
+          <p class="lead font-weight-normal">3. who is better?</p>
+          <div class="form-check my-2 text-white-50">
+            <input type="radio" name="q3" value="A" checked>
+            <label class="form-check-label">Kawhi</label>
+          </div>
+          <div class="form-check my-2 text-white-50">
+            <input type="radio" name="q3" value="B">
+            <label class="form-check-label">LeGM</label>
+          </div>
+        </div>
+        <div class="my-1">
+          <p class="lead font-weight-normal">4. When will the spurs win NBA championship again?</p>
+          <div class="form-check my-2 text-white-50">
+            <input type="radio" name="q4" value="A" checked>
+            <label class="form-check-label">5-10 Years</label>
+          </div>
+          <div class="form-check my-2 text-white-50">
+            <input type="radio" name="q4" value="B">
+            <label class="form-check-label">Never</label>
+          </div>
+        </div>
+        <div class="text-center my-3">
+          <input type="submit" class="btn btn-light"> 
+        </div>
+      </form>
+
+    </div>
+  </div>
+  
+    <script src="app.js"></script>
 </body>
 </html>
