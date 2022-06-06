@@ -1,76 +1,74 @@
-
 let todos = ['buy milk', 'do homework']
 
-// const addForm = document.querySelector('.add')
-// const list = document.querySelector('.todos')
-// const search = document.querySelector('.search input')
-// const clearBtn = document.querySelector('.button-clear')
-
+// elements selected
 
 const addForm = $(".add");
-const list = $(".add");
-const search = $(".add");
-const clearBtn = $(".add");
-
-
+const list = $(".todos");
+const search = $(".search input");
+const clearBtn = $(".button-clear");
 
 const renderTodos = (todos) => {
     html = ''
-    todos.forEach(element =>{
+    todos.forEach((element, index) =>{
         html += `<li class="list-group-item d-flex justify-content-between align-items-center">
                 <span>${element}</span>
-                <i class="far fa-trash-alt delete"></i>
+                <i id="test-${index}" class="far fa-trash-alt delete"></i>
                 </li>`
     })
-    list.innerHTML = html;
+    list.html(html); // jquery html method on element
 }
 
-renderTodos(todos)
+renderTodos(todos);
 
-addForm.addEventListener('submit', e =>{
-    e.preventDefault();
+// wait for an enter in the new todo input which sucmits the form
+// jquery submit method replaces event listenr in vanila
+
+addForm.submit(e =>{
+    e.preventDefault(); // prevent refresh
     search.value = '';
-    const newTodo = addForm.add.value.trim().toLowerCase();
+    const newTodo = addForm.find("input").val().trim().toLowerCase() // val() jquery method instead of value property
+
     if (newTodo.length){
         todos.unshift(newTodo);
         renderTodos(todos);
-        addForm.reset();
-    }else{
+        addForm.trigger("reset");
+    } else{
         alert("it's empty!");
     }
 })
 
-list.addEventListener('click', e => {
-    if (e.target.classList.contains('delete')){
-        
-        e.target.parentElement.remove();
-        console.log(e.target.parentElement)
+// delegation, when class="delete" element is lickced inside of class="todos" element
 
-        var index = todos.indexOf(e.target.value);
-        todos.splice(index, 1);
-    }
-})
+$(".todos").on("click", ".delete", function(e) {
+    let index = todos.indexOf($(this).parent().text())
+    todos.splice(index, 1);
 
-search.addEventListener('keyup', () => {
-    const term = search.value.trim().toLowerCase();
+    $(this).parent().remove()
+    // e.target.parentElement.remove();
+});
+
+search.keyup(() => {
+    const term = search.val().trim().toLowerCase();
     const filtered = todos.filter(element =>{
         return element.includes(term)
     })
     renderTodos(filtered)
 })
 
-clearBtn.addEventListener('dblclick', e => {
+clearBtn.dblclick(e => {
     e.preventDefault();
+
     todos = [];
-    clearBtn.style.background = 'red'
-    clearBtn.style.color = 'white'
+    clearBtn.css('background', 'red')
+    clearBtn.css('color', 'white')
+    
     search.value = ''
     renderTodos(todos)
 })
 
-
-clearBtn.addEventListener('click', e => {
+clearBtn.click(e => {
     e.preventDefault();
-    clearBtn.style.background = 'red'
-    clearBtn.style.color = 'white'
+
+    clearBtn.css('background', 'red')
+    clearBtn.css('color', 'white')
 })
