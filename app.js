@@ -1,7 +1,8 @@
 let todos = ['buy milk', 'do homework']
 let changeIndex = 0;
-// selecting elements
+let prevText = ""
 
+// selecting elements
 const addForm = $(".add");
 const list = $(".todos");
 const searchForm = $(".search")
@@ -42,52 +43,57 @@ addForm.submit(e =>{
 // delegation, when class="delete" element is clicked inside of class="todos" element
 // meaning when clicking on the delete icon
 
-$(".todos").on("click", ".delete", function() {
+list.on("click", ".delete", function() {
     let index = todos.indexOf($(this).parent().text().trim())
     todos.splice(index, 1); // remove from todos array
     $(this).parent().remove() // same as e.target.parentElement.remove();
 });
 
-$(".todos").on("click", ".editable_text", function(e) {
+const changeTodo = () => {
+    let new_input = $(".todos .text_editor").val();
+    if (new_input === "") {new_input = prevText}
+
+    let updated_text = $("<span class=\"editable_text\">");
+    updated_text.text(new_input);
+
+    todos[changeIndex] = new_input;
+    renderTodos(todos)
+}
+
+list.on("click", ".editable_text", function() {
     let curText = $(this).text()
     
     let new_input = $("<input class=\"text_editor\"/>");
     new_input.val(curText);
-    
     $(this).replaceWith(new_input);
-    
     new_input.focus();
 
     changeIndex = todos.indexOf(curText)
+    prevText = curText
 });
 
-$(".todos").on("blur", ".text_editor", function() {
-    console.log(todos)
-    let new_input = $(this).val();
-    if (new_input === null || new_input === "") {new_input = curText}
-
-    let updated_text = $("<span class=\"editable_text\">");
-    updated_text.text(new_input);
-    console.log($(this))
-    $(this).replaceWith(updated_text);
-    console.log($(this))
-
-    todos[changeIndex] = new_input;
-    renderTodos(todos)
+list.on("blur keyup", ".text_editor", (e) => {    
+    if (e.type === 'focusout') {
+        changeTodo()
+    }
+    if (e.type === 'keyup' && e.key === "Enter"){
+        changeTodo()
+    }
 });
+
+
 
 searchForm.submit(function(e) {
     e.preventDefault()
 })
 
-search.keyup(function(e) {
+search.keyup(function() {
     const term = search.val().trim().toLowerCase();
-    const filtered = todos.filter(element =>{
+    const filtered = todos.filter(element => {
         return element.includes(term)
     })
     renderTodos(filtered)
 })
-
 
 const keepButtonColor = () => {
     clearBtn.css('background', 'red')
