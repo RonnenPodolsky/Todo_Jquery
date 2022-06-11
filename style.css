@@ -18,9 +18,8 @@ input[type=text], input[type=text]:focus{
     max-width: 220px;
     border: none;
     color: #fff;
+    font-size: 11px;
 
-
-    
 }
 
 .todos li{

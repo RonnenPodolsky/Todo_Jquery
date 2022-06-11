@@ -60,8 +60,7 @@ const keepButtonColor = () => {
     clearBtn.css('color', 'white')
 }
 
-clearBtn.dblclick(e => {
-    e.preventDefault();
+clearBtn.dblclick(() => {
     keepButtonColor()
 
     todos = [];
@@ -69,7 +68,6 @@ clearBtn.dblclick(e => {
     renderTodos(todos)
 })
 
-clearBtn.click(e => {
-    e.preventDefault();
+clearBtn.click(() => {
     keepButtonColor()
 })
