@@ -1,6 +1,6 @@
 let todos = ['buy milk', 'do homework']
 
-// elements selected
+// selecting elements
 
 const addForm = $(".add");
 const list = $(".todos");
@@ -18,33 +18,33 @@ const renderTodos = (todos) => {
     list.html(html); // jquery html method on element
 }
 
-renderTodos(todos);
+renderTodos(todos); // when page loads
 
-// wait for an enter in the new todo input which sucmits the form
+// wait for an enter in the new todo input which submits the form
 // jquery submit method replaces event listenr in vanila
 
 addForm.submit(e =>{
-    e.preventDefault(); // prevent refresh
-    search.value = '';
+    e.preventDefault(); // prevent refresh after form submit
+    search.value = ''; // reset input text
     const newTodo = addForm.find("input").val().trim().toLowerCase() // val() jquery method instead of value property
 
-    if (newTodo.length){
+    if (newTodo.length){ // validating the text is not empty
         todos.unshift(newTodo);
         renderTodos(todos);
-        addForm.trigger("reset");
+        addForm.trigger("reset"); // clear submit input
+        search.val("") // clear search input
     } else{
         alert("it's empty!");
     }
 })
 
-// delegation, when class="delete" element is lickced inside of class="todos" element
+// delegation, when class="delete" element is clicked inside of class="todos" element
+// meaning when clicking on the delete icon
 
-$(".todos").on("click", ".delete", function(e) {
+$(".todos").on("click", ".delete", function() {
     let index = todos.indexOf($(this).parent().text())
-    todos.splice(index, 1);
-
-    $(this).parent().remove()
-    // e.target.parentElement.remove();
+    todos.splice(index, 1); // remove from todos array
+    $(this).parent().remove() // same as e.target.parentElement.remove();
 });
 
 search.keyup(() => {
@@ -55,20 +55,21 @@ search.keyup(() => {
     renderTodos(filtered)
 })
 
-clearBtn.dblclick(e => {
-    e.preventDefault();
-
-    todos = [];
+const keepButtonColor = () => {
     clearBtn.css('background', 'red')
     clearBtn.css('color', 'white')
-    
+}
+
+clearBtn.dblclick(e => {
+    e.preventDefault();
+    keepButtonColor()
+
+    todos = [];
     search.value = ''
     renderTodos(todos)
 })
 
 clearBtn.click(e => {
     e.preventDefault();
-
-    clearBtn.css('background', 'red')
-    clearBtn.css('color', 'white')
+    keepButtonColor()
 })
