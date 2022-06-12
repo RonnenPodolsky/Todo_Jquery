@@ -17,7 +17,7 @@ const renderTodos = todos => {
     todos.forEach(element =>{
         html += `<li class="list-group-item d-flex justify-content-between align-items-center">
                     <span class="editable_text">${element}</span>
-                    <i class="far fa-trash-alt delete"></i>
+                    <i class="far fa-trash-alt delete" data-toggle="tooltip" data-placement="top" title="Tooltip on top"></i>
                  </li>`
     })
     list.html(html); // jquery html method on element
