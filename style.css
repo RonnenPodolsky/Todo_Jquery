@@ -14,7 +14,6 @@ h2 {
     border: 2px dotted orange;
 }
 
-
 .text_editor {
     border: none;
     background: #ddd;
@@ -25,7 +24,6 @@ h2 {
     cursor: text;
   }
   
-
 
 .container{
     max-width: 400px;
@@ -44,13 +42,11 @@ input[type=text], input[type=text]:focus{
     border: none;
     color: #fff;
     font-size: 11px;
-
 }
 
 .todos li{
     background: #423a6f;
     color: inherit;
-
 }
 
 .delete{
@@ -60,4 +56,3 @@ input[type=text], input[type=text]:focus{
 .filtered {
     display: none;
 }
-

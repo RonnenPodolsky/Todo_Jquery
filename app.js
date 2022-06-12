@@ -20,7 +20,7 @@ const renderTodos = (todos) => {
     list.html(html); // jquery html method on element
 }
 
-renderTodos(todos); // when page loads
+$('document').on('ready', renderTodos(todos)); // when page loads show current todos
 
 // wait for an enter in the new todo input which submits the form
 // jquery submit method replaces event listenr in vanila
@@ -80,8 +80,6 @@ list.on("blur keyup", ".text_editor", (e) => {
         changeTodo()
     }
 });
-
-
 
 searchForm.submit(function(e) {
     e.preventDefault()
