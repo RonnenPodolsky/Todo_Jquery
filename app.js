@@ -9,7 +9,6 @@ const searchForm = $(".search")
 const searchInput = $(".search input");
 const clearBtn = $(".button-clear");
 
-
 // use todos array to add each item to li tag and than update the ul element
 // done after changes
 const renderTodos = todos => {
