@@ -36,7 +36,7 @@ input[type=text], input[type=text]:focus{
     max-width: 400px;
 }
 
-.button-clear, .button-clear:hover, .button-clear:active{
+.button-clear, .button-clear:hover, .button-clear:active, .button-clear.stay {
     background: red;
     max-width: 220px;
     border: none;
