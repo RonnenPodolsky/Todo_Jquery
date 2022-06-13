@@ -8,10 +8,14 @@ h2 {
 
 .editable_text{
     cursor: pointer;
+    border: 0.1px solid;
+    border-color: transparent;
 }
 
+
+
 .editable_text:hover{
-    border: 2px dotted orange;
+    border: 0.5px dotted white;
 }
 
 .text_editor {
